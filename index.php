@@ -2,8 +2,7 @@
 
 require 'vendor/autoload.php';
 
-use League\Csv\Writer;
-use League\Csv\CannotInsertRecord;
+use sdleiw\CoinMarketCap\CsvWriter;
 use sdleiw\CoinMarketCap\WebClient;
 use sdleiw\CoinMarketCap\DomCrawler;
 
@@ -15,17 +14,8 @@ $html = $client->getHistoryDataHtml($coinName);
 $crawler = new DomCrawler($html);
 $history = $crawler->fetchHistoryData();
 
-try {
-    $writer = Writer::createFromPath("./files/{$coinName}.csv", 'w+');
-    try {
-        $writer->setDelimiter(';');
-    } catch (\Exception $e) {
-        // @todo
-    }
-    $writer->insertAll($history);
-} catch (CannotInsertRecord $e) {
-    var_dump($e->getRecords());
-}
+$csvWrite = new CsvWriter($coinName);
+$csvWrite->writeToCsv($history);
 
 
 
