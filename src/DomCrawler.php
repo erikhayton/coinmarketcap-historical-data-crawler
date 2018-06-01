@@ -1,4 +1,9 @@
 <?php
+declare(strict_types=1);
+
+/**
+ * Created by lei
+ */
 
 namespace sdleiw\CoinMarketCap;
 
@@ -14,12 +19,13 @@ class DomCrawler
      */
     private $crawler;
 
-    public function __construct($html) {
+    public function __construct($html)
+    {
         $this->crawler = new Crawler();
         $this->crawler->addHTMLContent($html);
     }
 
-    public function fetchHistoryData() : array
+    public function fetchHistoryData(): array
     {   
         $history = [];
         $history[] = $this->getTableHeadRow();
@@ -42,7 +48,7 @@ class DomCrawler
         return $tableHead;
     }
 
-    private function getTableBodyRow($trElement) : array
+    private function getTableBodyRow($trElement): array
     {
         $rowArr = [];
         $rowCrawler = new Crawler($trElement);

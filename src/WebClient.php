@@ -1,4 +1,9 @@
 <?php
+declare(strict_types=1);
+
+/**
+ * Created by lei
+ */
 
 namespace sdleiw\CoinMarketCap;
 
@@ -12,7 +17,8 @@ class WebClient
      */
     private $client;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->client = new Client();
     }
 
