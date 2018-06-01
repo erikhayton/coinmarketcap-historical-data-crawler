@@ -19,14 +19,14 @@ class DomCrawler
      */
     private $crawler;
 
-    public function __construct($html)
+    public function __construct()
     {
         $this->crawler = new Crawler();
-        $this->crawler->addHTMLContent($html);
     }
 
-    public function fetchHistoryData(): array
-    {   
+    public function fetchHistoryData($html): array
+    {
+        $this->crawler->addHTMLContent($html);
         $history = [];
         $history[] = $this->getTableHeadRow();
         $tBodyTrElements = $this->crawler->filter(self::TABLE_BODY_CSS_SELECTOR)->children();
