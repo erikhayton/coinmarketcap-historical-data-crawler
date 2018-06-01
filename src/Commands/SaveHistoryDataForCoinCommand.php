@@ -41,6 +41,6 @@ class SaveHistoryDataForCoinCommand extends Command
         );
         $cryptoHistoryDataService->saveDataToCsv($coinName, $from, $to);
 
-        $output->writeln("done");
+        $output->writeln("save coin to csv: " . $coinName);
     }
 }

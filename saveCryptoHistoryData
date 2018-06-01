@@ -5,9 +5,12 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 use sdleiw\CoinMarketCap\Commands\SaveHistoryDataForCoinCommand;
+use sdleiw\CoinMarketCap\Commands\SaveHistoryDateForAllCoinsCommand;
 
 $app = new Application();
+
 $app->add(new SaveHistoryDataForCoinCommand);
+$app->add(new SaveHistoryDateForAllCoinsCommand());
 
 $app->run();
 
