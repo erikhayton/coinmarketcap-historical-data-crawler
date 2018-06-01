@@ -4,8 +4,6 @@ a crawler to fetch crypto historical data from coinmarketcap and save to a csv f
 
 ### todo
 
-- start, end query
-- code standard
+- error handling when coinname invalid
+- coding standard
 - export to file dir parameter
-- symfony console app
-- error handling when coinname invalid 

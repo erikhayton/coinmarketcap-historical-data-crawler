@@ -29,7 +29,11 @@ class CsvWriter
 
     public function writeToCsv(array $data): void
     {
-        $writer = Writer::createFromPath("./files/{$this->filename}.csv", 'w+');
+        $dir = "./files/coinmarketcap"; // @todo: make this dir an argument
+        if (!file_exists($dir)) {
+            mkdir($dir, 0755, true);
+        }
+        $writer = Writer::createFromPath("{$dir}/{$this->filename}.csv", 'w+');
         $writer->setDelimiter($this->delimiter);
         $writer->insertAll($data);
     }

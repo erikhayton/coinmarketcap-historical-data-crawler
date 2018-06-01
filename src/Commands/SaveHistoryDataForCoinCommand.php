@@ -24,8 +24,8 @@ class SaveHistoryDataForCoinCommand extends Command
             ->setName('coinmarketcap:history:csv')
             ->setDescription('save history data for one coin.')
             ->addArgument('coin', InputArgument::REQUIRED, 'coin name')
-            ->addArgument('from', InputArgument::OPTIONAL, 'from when')
-            ->addArgument('to', InputArgument::OPTIONAL, 'to which day')
+            ->addArgument('from', InputArgument::OPTIONAL, 'from when, default one month ago')
+            ->addArgument('to', InputArgument::OPTIONAL, 'to which day, default today')
         ;
     }
 
