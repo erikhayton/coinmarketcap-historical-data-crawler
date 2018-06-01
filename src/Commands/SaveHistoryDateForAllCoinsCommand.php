@@ -12,6 +12,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class SaveHistoryDateForAllCoinsCommand extends Command
@@ -31,6 +32,7 @@ class SaveHistoryDateForAllCoinsCommand extends Command
         $from = $input->getArgument('from');
         $to = $input->getArgument('to');
         $command = $this->getApplication()->find('coinmarketcap:history:csv');
+        $nullOutput = new NullOutput();
         $arguments = compact('from', 'to');
         $errorCount = 0;
 
@@ -41,7 +43,7 @@ class SaveHistoryDateForAllCoinsCommand extends Command
             $arguments['coin'] = $name;
             $commandInput = new ArrayInput($arguments);
             try {
-                $command->run($commandInput, $output);
+                $command->run($commandInput, $nullOutput);
             } catch (\Exception $e) {
                 $output->writeln("<error>{$e->getMessage()}</error>");
                 $errorCount++;
