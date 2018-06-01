@@ -1,0 +1,15 @@
+{
+    "name": "lei/coinmarketcap-historical-data",
+    "authors": [
+        {
+            "name": "lei",
+            "email": "leiwgz@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/dom-crawler": "^4.1",
+        "symfony/css-selector": "^4.1",
+        "league/csv": "^9.1"
+    }
+}
