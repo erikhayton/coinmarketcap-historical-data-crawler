@@ -24,18 +24,22 @@ class SaveHistoryDataForCoinCommand extends Command
             ->setName('coinmarketcap:history:csv')
             ->setDescription('save history data for one coin.')
             ->addArgument('coin', InputArgument::REQUIRED, 'coin name')
+            ->addArgument('from', InputArgument::OPTIONAL, 'from when')
+            ->addArgument('to', InputArgument::OPTIONAL, 'to which day')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $coinName = $input->getArgument('coin');
+        $from = $input->getArgument('from');
+        $to = $input->getArgument('to');
         $cryptoHistoryDataService = new CryptoHistoryData(
             new WebClient(),
             new DomCrawler(),
             new CsvWriter($coinName)
         );
-        $cryptoHistoryDataService->saveDataToCsv($coinName);
+        $cryptoHistoryDataService->saveDataToCsv($coinName, $from, $to);
 
         $output->writeln("done");
     }

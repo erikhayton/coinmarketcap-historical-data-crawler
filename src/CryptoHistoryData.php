@@ -23,9 +23,9 @@ class CryptoHistoryData
         $this->csvWriter = $csvWriter;
     }
 
-    public function saveDataToCsv(string $coinName): void
+    public function saveDataToCsv(string $coinName, $from, $to): void
     {
-        $html = $this->client->getHistoryDataHtml($coinName);
+        $html = $this->client->getHistoryDataHtml($coinName, $from, $to);
         $historyData = $this->crawler->fetchHistoryData($html);
         $this->csvWriter->writeToCsv($historyData);
     }

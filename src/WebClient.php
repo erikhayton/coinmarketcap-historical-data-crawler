@@ -22,12 +22,13 @@ class WebClient
         $this->client = new Client();
     }
 
-    public function getHistoryDataHtml(string $coin, string $start = '', string $end = ''): string
+    public function getHistoryDataHtml(string $coin, ?string $start = '', ?string $end = ''): string
     {
         $url = "https://coinmarketcap.com/currencies/{$coin}/historical-data/";
+        $query = $this->getTimeConfig($start, $end);
 
         try {
-            $res = $this->client->request('GET', $url);
+            $res = $this->client->request('GET', $url, ['query' => $query]);
 
             return $res->getbody()->getContents();
         } catch (GuzzleException $e) {
@@ -35,5 +36,24 @@ class WebClient
         }
 
         return "";
+    }
+
+    private function getTimeConfig(?string $start, ?string $end): array
+    {
+        $query = [];
+        if ($start) {
+            $end = $end ?: date('Ymd');
+            $query = [
+                'start' => $this->formatDate($start),
+                'end' => $this->formatDate($end),
+            ];
+        }
+
+        return $query;
+    }
+
+    private function formatDate(?string $date)
+    {
+        return date('Ymd', strtotime($date));
     }
 }
