@@ -30,13 +30,7 @@ class CsvWriter
     public function writeToCsv(array $data): void
     {
         $writer = Writer::createFromPath("./files/{$this->filename}.csv", 'w+');
-
-        try {
-            $writer->setDelimiter($this->delimiter);
-        } catch (\Exception $e) {
-            var_dump($e->getMessage());
-        }
-
+        $writer->setDelimiter($this->delimiter);
         $writer->insertAll($data);
     }
 }
