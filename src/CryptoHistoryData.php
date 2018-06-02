@@ -9,7 +9,6 @@ namespace sdleiw\CoinMarketCap;
 
 class CryptoHistoryData
 {
-
     private $webClient;
 
     private $crawler;

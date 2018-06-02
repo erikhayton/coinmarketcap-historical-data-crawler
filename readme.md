@@ -9,9 +9,3 @@ save history data for one coin, if without time arguments, save data of the last
 
 save history data for all coins
 `php saveCryptoHistoryData coinmarketcap:history:csv:all 20180101 20180201`
-
-## todo
-
-- error handling when coinname invalid
-- coding standard
-- export to file dir parameter
